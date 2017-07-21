@@ -162,6 +162,7 @@
 \RequirePackage{ifthen}
 \RequirePackage{ifpdf}
 \RequirePackage{lmodern}
+\RequirePackage{xargs}
 \RequirePackage[pagestyles]{titlesec}
 \definecolor{bleu303}{RGB}{0,62,92}
 \colorlet{bleu303pale}{bleu303!20!white}
@@ -331,27 +332,84 @@
     \renewcommand*{\polydatesave}{#1}
 }
 
-\newcommand{\logo}[2][{}]{
+\newcommandx{\logo}[4][1={}, 3={}, 4={}]{%[2][{}]{%
     \ifthenelse{\equal{#1}{headers}}{
         \renewcommand{\enteteinterieurimpair}{
             \enteteinterieur{#2}
         }
     }{}
     \renewcommand{\titlepagebottomline}{
-     \begin{minipage}{5\largeurlogohori}
-         \centering
-         \raisebox{-0.5\height}{
-                \color{bleu303}
-                \includegraphics[width=1.5\largeurlogohori]
-                    {\polylogohori}
+        \ifthenelse{\equal{#3}{}}{
+            \begin{minipage}{5\largeurlogohori}
+                \centering
+                \raisebox{-0.5\height}{
+                    \color{bleu303}
+                    \includegraphics[width=1.5\largeurlogohori]
+                        {\polylogohori}
+                }
+                \hspace{0.25\largeurlogohori}
+                \raisebox{-0.5\height}{
+                    \color{black}
+                    \includegraphics[height=\hauteurlogovert,
+                        width=1.5\largeurlogohori,
+                        keepaspectratio]{#2}
+                }
+            \end{minipage}
+        }{
+            \ifthenelse{\equal{#4}{}}{
+                \begin{minipage}{0.8\textwidth}
+                    \centering
+                    \includegraphics[height=0.8\hauteurlogovert]{\polylogovert}
+                    \begin{minipage}{5\largeurlogohori}
+                        \centering
+                        %\raisebox{-0.5\height}{
+                            \color{black}
+                            \includegraphics[height=0.8\hauteurlogovert,
+                                width=1.5\largeurlogohori,
+                                keepaspectratio]{#2}
+                        %}
+                        \hspace{0.25\largeurlogohori}
+                        %\raisebox{-0.5\height}{
+                            \includegraphics[height=0.8\hauteurlogovert,
+                                width=1.5\largeurlogohori,
+                                keepaspectratio]{#3}
+                        %}
+                    \end{minipage}
+                \end{minipage}
+            }{
+                \begin{minipage}{0.8\textwidth}
+                    \centering
+                    \begin{minipage}{5\largeurlogohori}
+                        \centering
+                        \raisebox{-0.5\height}{
+                        \includegraphics[height=0.8\hauteurlogovert,
+                                        width=1.5\largeurlogohori,
+                                        keepaspectratio]{#2}
+                        }
+                        \hspace{0.25\largeurlogohori}
+                        \raisebox{-0.5\height}{
+                            \color{bleu303}
+                            \includegraphics[width=1.5\largeurlogohori]
+                            {\polylogohori}
+                        }
+                    \end{minipage}
+                    \begin{minipage}{5\largeurlogohori}
+                        \centering
+                        \raisebox{-0.5\height}{
+                            \includegraphics[height=0.8\hauteurlogovert,
+                                            width=1.5\largeurlogohori,
+                                            keepaspectratio]{#3}
+                        }
+                        \hspace{0.25\largeurlogohori}
+                        \raisebox{-0.5\height}{
+                            \includegraphics[height=0.8\hauteurlogovert,
+                                            width=1.5\largeurlogohori,
+                                            keepaspectratio]{#4}
+                        }
+                    \end{minipage}
+                \end{minipage}
             }
-            \hspace{0.25\largeurlogohori}
-            \raisebox{-0.5\height}{
-                \includegraphics[height=\hauteurlogovert,
-                    width=1.5\largeurlogohori,
-                    keepaspectratio]{#2}
-            }
-        \end{minipage}
+        }
     }
     \renewcommand{\notitlepageupperline}{
         \noindent%
