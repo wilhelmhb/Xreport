@@ -332,10 +332,16 @@
     \renewcommand*{\polydatesave}{#1}
 }
 
-\newcommandx{\logo}[4][1={}, 3={}, 4={}]{%[2][{}]{%
+\newcommandx{\logo}[5][1={}, 3={}, 4={}, 5={}]{%[2][{}]{%
     \ifthenelse{\equal{#1}{headers}}{
-        \renewcommand{\enteteinterieurimpair}{
-            \enteteinterieur{#2}
+        \ifthenelse{\equal{#5}{}}{
+            \renewcommand{\enteteinterieurimpair}{
+                \enteteinterieur{#2}
+            }
+        }{
+            \renewcommand{\enteteinterieurimpair}{
+                \enteteinterieur{#5}
+            }
         }
     }{}
     \renewcommand{\titlepagebottomline}{
