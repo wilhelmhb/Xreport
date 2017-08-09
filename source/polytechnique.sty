@@ -155,6 +155,13 @@
         }
     }
 }
+\DeclareOption{severalauthors}{
+    \AtEndOfPackage{
+        \setlength{\distancetitrehaut}{0.12\textheight}
+        \setlength{\distancetitresoustitre}{0.17\textheight}
+        \setlength{\distancesoustitredate}{0.14\textheight}
+    }
+}
 \DeclareOption*{
     \PassOptionsToPackage{\CurrentOption}{geometry}
 }
@@ -240,6 +247,12 @@
 \setlength{\largeurlogohori}{\hauteurlogohori*\real{1.859}}
 \newlength{\distancetitrelogo}
 \setlength{\distancetitrelogo}{\separationtitre-\margehaut}
+\newlength{\distancetitrehaut}
+\setlength{\distancetitrehaut}{0.125\textheight}
+\newlength{\distancetitresoustitre}
+\setlength{\distancetitresoustitre}{0.2\textheight}
+\newlength{\distancesoustitredate}
+\setlength{\distancesoustitredate}{0.15\textheight}
 \newlength{\separationlogotrait}
 \setlength{\separationlogotrait}{-\baselineskip*2+10mm}
 \newlength{\largeurminipage}
@@ -509,14 +522,14 @@
           \raisebox{-\totalheight}[0pt][0pt]{%
             \color{bleu303pale}%
             \includegraphics[height=\hauteurlogopage]{\polyarmes}}}
-        \vspace*{0.125\textheight}
+        \vspace*{\distancetitrehaut}
         \begin{center}
             \Huge\sffamily\bfseries\color{bleu303}
             \MakeUppercaseWithNewline{\polytitresave}\\
-            \vspace*{0.2\textheight}
+            \vspace*{\distancetitresoustitre}
             \LARGE\hspace{0cm}\polysoustitresave\\
-            \vspace*{0.15\textheight}
-            \Large\mdseries\hspace{0cm}\polydatesave\\
+            \vspace*{\distancesoustitredate}
+            \Large\mdseries\hspace{0cm}\polydatesave\\[-0.4\baselineskip]
             \includegraphics{\polyfiletcourtbleu}
             \\[0.4\baselineskip]
             \rmfamily\hspace{0cm}\polyauthorsave\\[\fill]
