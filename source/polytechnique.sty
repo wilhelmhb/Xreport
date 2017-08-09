@@ -97,43 +97,48 @@
 }
 \DeclareOption{sectionmark}{
     \AtEndOfPackage{
+        \let\oldenteteexterieur=\enteteexterieur
         \renewcommand{\enteteexterieur}[1]{
             \ifthesection{
                     {\scshape\color{bleu303}
                         \thesection{}.~\sectiontitle}
             }{
+                \oldenteteexterieur{#1}
             }
         }
     }
 }
 \DeclareOption{chaptermark}{
     \AtEndOfPackage{
+        \let\oldenteteexterieur=\enteteexterieur
         \renewcommand{\enteteexterieur}[1]{
             \ifthechapter{
                      {\scshape\color{bleu303}
                          \thechapter{}.~\chaptertitle}
             }{
-
+                \oldenteteexterieur{#1}
             }
         }
     }
 }
 \DeclareOption{markboth}{
     \AtEndOfPackage{
+        \let\oldenteteexterieurimpair=\enteteexterieurimpair
         \renewcommand{\enteteexterieurimpair}{
             \ifthesection{%Si la section a ete definie
                     {\scshape\color{bleu303}
                         \thesection{}.~\sectiontitle}
             }{
-
+                \oldenteteexterieurimpair
             }
         }
+        \let\oldenteteexterieurpair=\enteteexterieurpair
         \renewcommand{\enteteexterieurpair}{
             \ifthechapter{
                     {\scshape\color{bleu303}
                         \thechapter{}.~\chaptertitle}
             }{
-
+                \oldenteteexterieurpair
             }
         }
     }
