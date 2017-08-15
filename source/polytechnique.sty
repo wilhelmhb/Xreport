@@ -74,6 +74,36 @@
     []
     }
 }
+\DeclareOption{fancyabstract}{
+    \AtEndOfPackage{
+        \renewenvironment{abstract}
+        {
+            \phantomsection
+            \addcontentsline{toc}{section}{\abstractname}
+            \section*{\abstractname}
+            \begingroup
+            \fontsize{10pt}{12pt}\selectfont
+            \list{}{
+            \setlength{\leftmargin}{5em}%
+            \setlength{\rightmargin}{\leftmargin}%
+            \listparindent 1.5em%
+            \itemindent    \listparindent
+            }%
+        \item\relax}
+        {\endlist
+        \endgroup
+            \begin{center}
+                \color{bleu303}
+
+                \rule{0.3\textwidth}{0.2mm}\vspace*{-3.5mm}
+
+                \rule{0.5\textwidth}{0.6mm}\vspace*{-3.8mm}
+
+                \rule{0.3\textwidth}{0.2mm}\vspace*{-1mm}
+            \end{center}
+        }
+    }
+}
 \DeclareOption{notitlepage}{
         \renewcommand*{\maketitle}{
             \notitlepagelayout{}
